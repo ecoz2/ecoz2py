@@ -1,6 +1,6 @@
-# python bindings for ecoz2
+# ecoz2 python wrapper
 
-WIP
+**WIP**
 
 ## Development
 
@@ -12,11 +12,16 @@ WIP
 
 ### Build
 
-[ecoz2](https://github.com/ecoz2/ecoz2) is included as a submodule,
-with selected functionality exposed via
-https://cython.readthedocs.io/.
-
+[ecoz2](https://github.com/ecoz2/ecoz2) is included as a submodule.
 
     git submodule foreach "(git checkout master; git pull)"
-    
+
+#### cffi
+
+    cd cffi    
+    make
+
+#### cython
+
+    cd cython    
     make

@@ -4,10 +4,12 @@ from Cython.Build import cythonize
 
 ecoz2_extension = Extension(
     name="ecoz2py",
-    sources=["src/ecoz2.pyx"],
+    sources=["ecoz2.pyx"],
     libraries=["ecoz"],
-    library_dirs=["ecoz2/_out/lib"],
-    include_dirs=["ecoz2/src/include"]
+    include_dirs=["../ecoz2/src/include"],
+    library_dirs=[
+      "../ecoz2/_out/lib",
+    ],
 )
 setup(
     name="ecoz2py",

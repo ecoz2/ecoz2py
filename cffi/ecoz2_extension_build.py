@@ -4,7 +4,9 @@ ffibuilder = FFI()
 ffibuilder.cdef("""
 const char *ecoz2_version();
 void ecoz2_baz(char* filename);
-void ecoz2_do_filenames(char* filenames[], int num_filenames);
+
+typedef void (*callback_t)(char*, int);
+void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
 """)
 
 ffibuilder.set_source("_ecoz2_extension",  # name of the output C extension
