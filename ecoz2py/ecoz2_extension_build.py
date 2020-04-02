@@ -17,15 +17,31 @@ int ecoz2_prd_show_file(
 typedef void (*callback_t)(char*, int);
 void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
 
+typedef void (*hmm_learn_callback_t)(char*, long double);
+
+int ecoz2_hmm_learn(
+        int N,
+        int model_type,
+        const char* sequence_filenames[],
+        int num_sequences,
+        double hmm_epsilon,
+        double val_auto,
+        int max_iterations,
+        hmm_learn_callback_t callback
+        );
+
 """)
 
 ffibuilder.set_source(
   "_ecoz2_extension",
   """
   #include "ecoz2_extension.h"
-  #include "../ecoz2/src/include/ecoz2.h"
-  #include "../ecoz2/src/include/lpc.h"
+  #include "ecoz2.h"
+  #include "lpc.h"
   """,
+  include_dirs=[
+    "../ecoz2/src/include"
+  ],
   sources=[
     'ecoz2_extension.c',
     '../ecoz2/src/ecoz/ecoz2.c',
@@ -66,8 +82,7 @@ ffibuilder.set_source(
     '../ecoz2/src/hmm/distr.c',
     '../ecoz2/src/hmm/symbol.c',
   ],
-
-  libraries=['m']
+  libraries=[]
 )
 
 if __name__ == "__main__":
