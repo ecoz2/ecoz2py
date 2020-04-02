@@ -7,12 +7,20 @@ void ecoz2_baz(char* filename);
 
 typedef void (*callback_t)(char*, int);
 void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
+
+int prd_show_file(
+        char *filename,
+        int show_reflections,
+        int from,
+        int to
+        );
 """)
 
 ffibuilder.set_source(
   "_ecoz2_extension",
   """
   #include "ecoz2_extension.h"
+  #include "../ecoz2/src/include/lpc.h"
   """,
   sources=[
     'ecoz2_extension.c',
