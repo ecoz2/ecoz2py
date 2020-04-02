@@ -7,15 +7,16 @@ const char *ecoz2_version();
 const char *ecoz2_hi(const char *name);
 int ecoz2_baz();
 
-typedef void (*callback_t)(char*, int);
-void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
-
-int prd_show_file(
+int ecoz2_prd_show_file(
         char *filename,
         int show_reflections,
         int from,
         int to
         );
+
+typedef void (*callback_t)(char*, int);
+void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
+
 """)
 
 ffibuilder.set_source(
