@@ -1,10 +1,13 @@
 from _ecoz2_extension import ffi
-from _ecoz2_extension.lib import ecoz2_version, ecoz2_baz, ecoz2_do_filenames
+from _ecoz2_extension.lib import ecoz2_version, ecoz2_baz, ecoz2_hi
 from _ecoz2_extension.lib import prd_show_file
+from _ecoz2_extension.lib import ecoz2_do_filenames
 
-print(ffi.string(ecoz2_version()))
+print("ECOZ2 C version: {}".format(ffi.string(ecoz2_version())))
 
-ecoz2_baz(b"somefile.txt")
+print("ecoz2_baz = {}".format(ecoz2_baz()))
+
+print("ecoz2_hi('calvin') = {}".format(ffi.string(ecoz2_hi(b'calvin'))))
 
 filenames = [
   b"somefile1.txt",

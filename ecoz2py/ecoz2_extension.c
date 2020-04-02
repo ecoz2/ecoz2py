@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include "ecoz2_extension.h"
-
-const char *ecoz2_version() {
-  return "The ecoz2 version";
-}
-
-void ecoz2_baz(char* filename) {
-  printf("C: ecoz2_baz: filename=%s\n", filename);
-}
+#include "ecoz2.h"
 
 void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback) {
   for (int i = 0; i < num_filenames; ++i) {

@@ -3,7 +3,9 @@ ffibuilder = FFI()
 
 ffibuilder.cdef("""
 const char *ecoz2_version();
-void ecoz2_baz(char* filename);
+
+const char *ecoz2_hi(const char *name);
+int ecoz2_baz();
 
 typedef void (*callback_t)(char*, int);
 void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
@@ -20,10 +22,12 @@ ffibuilder.set_source(
   "_ecoz2_extension",
   """
   #include "ecoz2_extension.h"
+  #include "../ecoz2/src/include/ecoz2.h"
   #include "../ecoz2/src/include/lpc.h"
   """,
   sources=[
     'ecoz2_extension.c',
+    '../ecoz2/src/ecoz/ecoz2.c',
     '../ecoz2/src/utl/utl.c',
     '../ecoz2/src/utl/fileutil.c',
     '../ecoz2/src/utl/list.c',
