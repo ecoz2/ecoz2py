@@ -3,6 +3,7 @@
 # python ecoz2_test.py
 #
 import ecoz2py as ecoz2
+import wandb
 
 print("ECOZ2 C version: {}".format(ecoz2.get_version()))
 
@@ -424,9 +425,12 @@ sequence_filenames = [
   b'../ecoz2-whale/exerc01/data/sequences/TRAIN/M1024/A/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__997.23315_999.357.seq',
 ]
 
+wandb.init(project="whale")
+
 
 def hmm_learn_callback(variable, value):
     print("P: hmm_learn_callback: variable={}, value={}".format(variable, value))
+    wandb.log({variable: value})
 
 
 ecoz2.hmm_learn(N=8,

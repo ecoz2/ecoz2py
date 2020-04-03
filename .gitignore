@@ -2,3 +2,4 @@
 _out/
 *.so
 *.o
+wandb/

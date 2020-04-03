@@ -1,5 +1,8 @@
 2020-04
 
+- initial run with wandb
+  https://app.wandb.ai/carueda/whale/runs/24s9w4xz
+
 - preliminaries for an ecoz2py module based on cffi
 - expose hmm_learn
     

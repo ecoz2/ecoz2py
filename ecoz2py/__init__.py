@@ -21,6 +21,10 @@ def to_bytes(s):
     return s if isinstance(s, bytes) else str(s).encode("utf-8")
 
 
+def to_str(s):
+    return s if isinstance(s, str) else bytes(s).decode("utf-8")
+
+
 def hmm_learn(N,
               sequence_filenames,
               model_type=3,
@@ -39,7 +43,7 @@ def hmm_learn(N,
     @ffi.callback("void(char*, long double)")
     def callback(c_variable, c_value):
         if hmm_learn_callback:
-            variable = ffi.string(c_variable)
+            variable = to_str(ffi.string(c_variable))
             value = float(c_value)
             hmm_learn_callback(variable, value)
 
