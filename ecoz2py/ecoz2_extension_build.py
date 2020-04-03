@@ -1,40 +1,15 @@
+import os
+
 from cffi import FFI
+
 ffibuilder = FFI()
 
-ffibuilder.cdef("""
-const char *ecoz2_version();
-
-const char *ecoz2_hi(const char *name);
-int ecoz2_baz();
-
-int ecoz2_prd_show_file(
-        char *filename,
-        int show_reflections,
-        int from,
-        int to
-        );
-
-typedef void (*callback_t)(char*, int);
-void ecoz2_do_filenames(char* filenames[], int num_filenames, callback_t callback);
-
-typedef void (*hmm_learn_callback_t)(char*, long double);
-
-int ecoz2_hmm_learn(
-        int N,
-        int model_type,
-        const char* sequence_filenames[],
-        int num_sequences,
-        double hmm_epsilon,
-        double val_auto,
-        int max_iterations,
-        hmm_learn_callback_t callback
-        );
-
-""")
+with open(os.path.join(os.path.dirname(__file__), 'ecoz2_extension.h')) as f:
+    ffibuilder.cdef(f.read())
 
 ffibuilder.set_source(
-  "_ecoz2_extension",
-  """
+  module_name="_ecoz2_extension",
+  source="""
   #include "ecoz2_extension.h"
   #include "ecoz2.h"
   #include "lpc.h"
@@ -43,7 +18,6 @@ ffibuilder.set_source(
     "../ecoz2/src/include"
   ],
   sources=[
-    'ecoz2_extension.c',
     '../ecoz2/src/ecoz/ecoz2.c',
     '../ecoz2/src/utl/utl.c',
     '../ecoz2/src/utl/fileutil.c',

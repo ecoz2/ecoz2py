@@ -426,7 +426,7 @@ sequence_filenames = [
 
 
 def hmm_learn_callback(variable, value):
-    print("\nP: hmm_learn_callback: variable={}, value={}\n".format(variable, value))
+    print("P: hmm_learn_callback: variable={}, value={}".format(variable, value))
 
 
 ecoz2.hmm_learn(N=8,

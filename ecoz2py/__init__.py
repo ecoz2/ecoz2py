@@ -17,6 +17,10 @@ def prd_show_file(filename,
     ecoz2_prd_show_file(filename, show_reflections, from_, to)
 
 
+def to_bytes(s):
+    return s if isinstance(s, bytes) else str(s).encode("utf-8")
+
+
 def hmm_learn(N,
               sequence_filenames,
               model_type=3,
@@ -26,15 +30,11 @@ def hmm_learn(N,
               hmm_learn_callback=None
               ):
 
-    c_sequence_filenames = ffi.new("char*[]", len(sequence_filenames))
-    for (i, filename) in enumerate(sequence_filenames):
-        print('FIL i={} => {}'.format(i, filename))
-        c_sequence_filenames[i] = ffi.new("char[]", filename)
+    c_sequence_filenames_keepalive = [ffi.new("char[]", to_bytes(s)) for s in sequence_filenames]
+    c_sequence_filenames = ffi.new("char *[]", c_sequence_filenames_keepalive)
 
-    for (i, c_sequence_filename) in enumerate(c_sequence_filenames):
-        print('SEQ i={} => {}'.format(i, ffi.string(c_sequence_filename)))
-
-    return
+    # for (i, c_sequence_filename) in enumerate(c_sequence_filenames):
+    #     print('SEQ {} => {}'.format(i, ffi.string(c_sequence_filename)))
 
     @ffi.callback("void(char*, long double)")
     def callback(c_variable, c_value):
