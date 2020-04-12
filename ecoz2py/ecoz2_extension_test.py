@@ -22,7 +22,7 @@ def to_bytes(s):
 
 ####################################################
 
-@ffi.callback("void(char*, long double)")
+@ffi.callback("void(char*, double)")
 def hmm_learn_callback(c_variable, c_value):
     variable = ffi.string(c_variable)
     value = float(c_value)

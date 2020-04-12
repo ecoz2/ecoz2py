@@ -1,5 +1,7 @@
 2020-04
 
+- upgrade ecoz2 pointer (now 0.2.0)
+
 - initial run with wandb
   https://app.wandb.ai/carueda/whale/runs/24s9w4xz
 

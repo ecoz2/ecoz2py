@@ -25,7 +25,7 @@ int ecoz2_prd_show_file(
         int to
         );
 
-typedef void (*hmm_learn_callback_t)(char*, long double);
+typedef void (*hmm_learn_callback_t)(char*, double);
 
 int ecoz2_hmm_learn(
         int N,

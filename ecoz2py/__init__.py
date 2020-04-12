@@ -40,7 +40,7 @@ def hmm_learn(N,
     # for (i, c_sequence_filename) in enumerate(c_sequence_filenames):
     #     print('SEQ {} => {}'.format(i, ffi.string(c_sequence_filename)))
 
-    @ffi.callback("void(char*, long double)")
+    @ffi.callback("void(char*, double)")
     def callback(c_variable, c_value):
         if hmm_learn_callback:
             variable = to_str(ffi.string(c_variable))
