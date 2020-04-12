@@ -3,6 +3,7 @@ from _ecoz2_extension.lib import ecoz2_version
 from _ecoz2_extension.lib import ecoz2_prd_show_file
 from _ecoz2_extension.lib import ecoz2_set_random_seed
 from _ecoz2_extension.lib import ecoz2_hmm_learn
+from _ecoz2_extension.lib import ecoz2_vq_learn
 
 
 def get_version():
@@ -54,6 +55,36 @@ def hmm_learn(N,
                     callback
                     )
 
+
+def vq_learn(prediction_order,
+             predictor_filenames,
+             codebook_class_name='_',
+             epsilon=0.05,
+             vq_learn_callback=None
+             ):
+
+    c_codebook_class_name = ffi.new("char []", _to_bytes(codebook_class_name))
+
+    c_predictor_filenames_keepalive = [ffi.new("char[]", _to_bytes(s)) for s in predictor_filenames]
+    c_predictor_filenames = ffi.new("char *[]", c_predictor_filenames_keepalive)
+
+    @ffi.callback("void(char*, double)")
+    def callback(c_variable, c_value):
+        if vq_learn_callback:
+            variable = _to_str(ffi.string(c_variable))
+            value = float(c_value)
+            vq_learn_callback(variable, value)
+
+    return ecoz2_vq_learn(prediction_order,
+                          epsilon,
+                          c_codebook_class_name,
+                          c_predictor_filenames,
+                          len(c_predictor_filenames),
+                          callback
+                          )
+
+
+# ---------
 
 def _to_bytes(s):
     return s if isinstance(s, bytes) else str(s).encode("utf-8")

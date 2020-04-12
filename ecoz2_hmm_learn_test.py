@@ -1,6 +1,6 @@
 #
 # export PYTHONPATH=.:ecoz2py
-# python ecoz2_test.py
+# python ecoz2_hmm_learn_test.py
 #
 import ecoz2py as ecoz2
 
@@ -13,11 +13,6 @@ if USE_WANDB:
 
 print("ECOZ2 C version: {}".format(ecoz2.get_version()))
 
-# ecoz2.prd_show_file(
-#   b"../ecoz2-whale/exerc01/data/predictors/TRAIN/B/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__10079.092_10080.35.prd"
-# )
-
-########################################################
 sequence_filenames = [
   b'../ecoz2-whale/exerc01/data/sequences/TRAIN/M1024/A/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__10063.154_10064.471.seq',
   b'../ecoz2-whale/exerc01/data/sequences/TRAIN/M1024/A/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__1007.8064_1009.83795.seq',

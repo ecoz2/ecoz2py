@@ -21,7 +21,7 @@
     $ (cd ecoz2py && make)
     
     $ export PYTHONPATH=.:ecoz2py
-    $ python ecoz2_test.py
+    $ python ecoz2_hmm_learn_test.py
     VERSION: b'The ecoz2 version'
     # ../ecoz2-whale/exerc01/data/predictors/TRAIN/B/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__10079.092_10080.35.prd:
     # className='B', T=81, P=36
