@@ -3,7 +3,13 @@
 # python ecoz2_test.py
 #
 import ecoz2py as ecoz2
-import wandb
+
+USE_WANDB = False
+
+print("USE_WANDB: {}".format(USE_WANDB))
+
+if USE_WANDB:
+    import wandb
 
 print("ECOZ2 C version: {}".format(ecoz2.get_version()))
 
@@ -425,13 +431,17 @@ sequence_filenames = [
   b'../ecoz2-whale/exerc01/data/sequences/TRAIN/M1024/A/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__997.23315_999.357.seq',
 ]
 
-wandb.init(project="whale")
+if USE_WANDB:
+    wandb.init(project="whale")
 
 
 def hmm_learn_callback(variable, value):
     print("P: hmm_learn_callback: variable={}, value={}".format(variable, value))
-    wandb.log({variable: value})
+    if USE_WANDB:
+        wandb.log({variable: value})
 
+
+ecoz2.set_random_seed(1)
 
 ecoz2.hmm_learn(N=8,
                 sequence_filenames=sequence_filenames,

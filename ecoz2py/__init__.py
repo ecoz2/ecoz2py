@@ -1,6 +1,7 @@
 from _ecoz2_extension import ffi
 from _ecoz2_extension.lib import ecoz2_version
 from _ecoz2_extension.lib import ecoz2_prd_show_file
+from _ecoz2_extension.lib import ecoz2_set_random_seed
 from _ecoz2_extension.lib import ecoz2_hmm_learn
 
 
@@ -23,6 +24,10 @@ def to_bytes(s):
 
 def to_str(s):
     return s if isinstance(s, str) else bytes(s).decode("utf-8")
+
+
+def set_random_seed(seed):
+    ecoz2_set_random_seed(seed)
 
 
 def hmm_learn(N,

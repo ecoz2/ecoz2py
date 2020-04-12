@@ -1,5 +1,6 @@
 2020-04
 
+- expose ecoz2_set_random_seed
 - upgrade ecoz2 pointer (now 0.2.0)
 
 - initial run with wandb
