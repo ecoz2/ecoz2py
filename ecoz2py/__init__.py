@@ -18,14 +18,6 @@ def prd_show_file(filename,
     ecoz2_prd_show_file(filename, show_reflections, from_, to)
 
 
-def to_bytes(s):
-    return s if isinstance(s, bytes) else str(s).encode("utf-8")
-
-
-def to_str(s):
-    return s if isinstance(s, str) else bytes(s).decode("utf-8")
-
-
 def set_random_seed(seed):
     ecoz2_set_random_seed(seed)
 
@@ -39,7 +31,7 @@ def hmm_learn(N,
               hmm_learn_callback=None
               ):
 
-    c_sequence_filenames_keepalive = [ffi.new("char[]", to_bytes(s)) for s in sequence_filenames]
+    c_sequence_filenames_keepalive = [ffi.new("char[]", _to_bytes(s)) for s in sequence_filenames]
     c_sequence_filenames = ffi.new("char *[]", c_sequence_filenames_keepalive)
 
     # for (i, c_sequence_filename) in enumerate(c_sequence_filenames):
@@ -48,7 +40,7 @@ def hmm_learn(N,
     @ffi.callback("void(char*, double)")
     def callback(c_variable, c_value):
         if hmm_learn_callback:
-            variable = to_str(ffi.string(c_variable))
+            variable = _to_str(ffi.string(c_variable))
             value = float(c_value)
             hmm_learn_callback(variable, value)
 
@@ -61,3 +53,11 @@ def hmm_learn(N,
                     max_iterations,
                     callback
                     )
+
+
+def _to_bytes(s):
+    return s if isinstance(s, bytes) else str(s).encode("utf-8")
+
+
+def _to_str(s):
+    return s if isinstance(s, str) else bytes(s).decode("utf-8")

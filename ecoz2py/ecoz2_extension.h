@@ -3,10 +3,6 @@
 
 const char *ecoz2_version();
 
-// for test purposes
-const char *ecoz2_hi(const char *name);
-int ecoz2_baz();
-
 void ecoz2_set_random_seed(int seed);
 
 int ecoz2_lpc_signals(

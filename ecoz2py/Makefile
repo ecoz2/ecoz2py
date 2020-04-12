@@ -8,4 +8,4 @@ test: _ecoz2_extension.so
 	python ecoz2_extension_test.py
 
 clean:
-	rm *.so *.o _ecoz2_extension.c
+	rm -f *.so *.o _ecoz2_extension.c
