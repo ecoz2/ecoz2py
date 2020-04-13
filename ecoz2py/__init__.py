@@ -1,8 +1,10 @@
+import os
+
 from _ecoz2_extension import ffi
-from _ecoz2_extension.lib import ecoz2_version
+from _ecoz2_extension.lib import ecoz2_hmm_learn
 from _ecoz2_extension.lib import ecoz2_prd_show_file
 from _ecoz2_extension.lib import ecoz2_set_random_seed
-from _ecoz2_extension.lib import ecoz2_hmm_learn
+from _ecoz2_extension.lib import ecoz2_version
 from _ecoz2_extension.lib import ecoz2_vq_learn
 
 
@@ -82,6 +84,38 @@ def vq_learn(prediction_order,
                           len(c_predictor_filenames),
                           callback
                           )
+
+
+def get_actual_filenames(filenames, file_ext):
+    """
+    Returns the given list of files but expanding any directories.
+    """
+    files = []
+    for path in filenames:
+        if os.path.isdir(path):
+            dir_files = list_files(path, file_ext)
+            files = files + dir_files
+        elif os.path.isfile(path) and path.endswith(file_ext):
+            files.append(path)
+
+    return files
+
+
+def list_files(directory, file_ext):
+    """
+    ListS all files under the given directory and having the given extension.
+    """
+    files = []
+
+    for e in os.listdir(directory):
+        f = "{}/{}".format(directory, e)
+        # print(f)
+        if os.path.isdir(f):
+            files = files + list_files(f, file_ext)
+        elif os.path.isfile(f) and f.endswith(file_ext):
+            files.append(f)
+
+    return files
 
 
 # ---------
