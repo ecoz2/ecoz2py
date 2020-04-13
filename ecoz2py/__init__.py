@@ -70,12 +70,10 @@ def vq_learn(prediction_order,
     c_predictor_filenames_keepalive = [ffi.new("char[]", _to_bytes(s)) for s in predictor_filenames]
     c_predictor_filenames = ffi.new("char *[]", c_predictor_filenames_keepalive)
 
-    @ffi.callback("void(char*, double)")
-    def callback(c_variable, c_value):
+    @ffi.callback("void(int, double, double, double)")
+    def callback(m, avg_distortion, sigma, inertia):
         if vq_learn_callback:
-            variable = _to_str(ffi.string(c_variable))
-            value = float(c_value)
-            vq_learn_callback(variable, value)
+            vq_learn_callback(m, avg_distortion, sigma, inertia)
 
     return ecoz2_vq_learn(prediction_order,
                           epsilon,

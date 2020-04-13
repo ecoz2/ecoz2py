@@ -1,6 +1,7 @@
 2020-04
 
 - expose ecoz2_vq_learn and test with preliminary callback for wandb 
+  use callback(m, avg_distortion, sigma, inertia)
 - expose ecoz2_set_random_seed
 - upgrade ecoz2 pointer (now 0.2.0)
 

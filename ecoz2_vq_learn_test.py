@@ -25,10 +25,17 @@ if USE_WANDB:
     wandb.init(project="whale-vq")
 
 
-def vq_learn_callback(variable, value):
-    print("P: vq_learn_callback: variable={}, value={}".format(variable, value))
+def vq_learn_callback(m, avg_distortion, sigma, inertia):
+    print("\nP: vq_learn_callback: M={} avg_distortion={}, sigma={}, inertia={}".format(
+      m, avg_distortion, sigma, inertia))
+
     if USE_WANDB:
-        wandb.log({variable: value})
+        wandb.log(dict(
+          m=m,
+          avg_distortion=avg_distortion,
+          sigma=sigma,
+          inertia=inertia
+        ))
 
 
 ecoz2.vq_learn(prediction_order=36,
