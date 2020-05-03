@@ -15,7 +15,7 @@ if USE_WANDB:
 print("ECOZ2 C version: {}".format(ecoz2.get_version()))
 
 sequence_filenames = get_actual_filenames(
-    filenames=['../ecoz2-whale/exerc01/data/sequences/TRAIN/M1024/A'],
+    filenames=['ecoz2py/data/sequences/TRAIN/M1024/B'],
     file_ext='.seq'
 )
 
