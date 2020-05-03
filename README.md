@@ -25,7 +25,7 @@
     # on a mac with gcc (not clang):
     $ CC=gcc-9 make
     
-    # on linux
+    # on linux  (build ok on a centos7 docker container)
     $ make
     
     $ cd ..
