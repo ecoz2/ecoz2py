@@ -21,7 +21,13 @@
 #### cffi based wrapper
 
     $ cd ecoz2py
+    
+    # on a mac with gcc (not clang):
     $ CC=gcc-9 make
+    
+    # on linux
+    $ make
+    
     $ cd ..
     
 A more regular test as "client" of the lib:

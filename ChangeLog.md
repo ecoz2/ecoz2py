@@ -3,7 +3,9 @@
 - build adjustments as c code now uses openmp.
   Build successful on:
     - macos with  gcc (Homebrew GCC 9.3.0_1) 9.3.0
-
+    - centos with gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-39)
+      (python36-devel needed)
+- add some data for self-contained tests
 
 2020-04
 

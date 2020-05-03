@@ -17,7 +17,7 @@ ffibuilder.set_source(
   include_dirs=[
     "../ecoz2/src/include"
   ],
-  extra_compile_args=['-fopenmp'],
+  extra_compile_args=['-fopenmp', '-std=gnu99'],
   extra_link_args=['-fopenmp'],
   sources=[
     '../ecoz2/src/ecoz2/ecoz2.c',
