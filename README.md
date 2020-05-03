@@ -6,8 +6,10 @@
 
 ### Setup
 
+    pip3 install [--user] virtualenv
+    
     virtualenv -p python3 .env
-    source .env/bin/activate
+    source .env/bin/activate    
     pip install -r requirements.txt
 
 ### Build
@@ -18,20 +20,25 @@
 
 #### cffi based wrapper
 
-    $ (cd ecoz2py && make)
+    $ cd ecoz2py
+    $ CC=gcc-9 make
+    $ cd ..
     
+A more regular test as "client" of the lib:
+
     $ export PYTHONPATH=.:ecoz2py
+    
     $ python ecoz2_hmm_learn_test.py
-    VERSION: b'The ecoz2 version'
-    # ../ecoz2-whale/exerc01/data/predictors/TRAIN/B/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__10079.092_10080.35.prd:
-    # className='B', T=81, P=36
-    r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,r30,r31,r32,r33,r34,r35,r36
+    USE_WANDB: False
+    ECOZ2 C version: b'0.3.0'
+    ecoz2_set_random_seed: seed=1
+    hmm_learn: num_sequences = 410
+    ...
+    409: ../ecoz2-whale/exerc01/data/sequences/TRAIN/M1024/A/from_MARS_20161221_000046_SongSession_16kHz_HPF5Hz.wav__8674.046_8675.54.seq
+
+    N=8 M=1024 type=3  #sequences = 410  max_T=179
+    val_auto = 0.3   log=-1.20397
+    max_iterations= -1
+    . 1: Δ = +1347.08  sum_log_prob = -222208 sum_log_prob_prev = -223555  'A'  (0.313s)
     ...
     
-    
-#### cython
-
-Some initial attempts with Cython
-
-    cd cython    
-    make

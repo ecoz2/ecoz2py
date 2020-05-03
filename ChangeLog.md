@@ -1,3 +1,10 @@
+2020-05
+
+- build adjustments as c code now uses openmp.
+  Build successful on:
+    - macos with  gcc (Homebrew GCC 9.3.0_1) 9.3.0
+
+
 2020-04
 
 - expose ecoz2_vq_learn and test with preliminary callback for wandb 
